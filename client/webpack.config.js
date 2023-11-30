@@ -22,7 +22,15 @@ module.exports = () => {
         template: "./index.html",
         title: "Webpack Plugin",
       }),
-      new WebpackPwaManifest(),
+      new WebpackPwaManifest({
+        name: 'Jite',
+        description: 'Jite is a text editor',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+          },
+  ],
+      }),
       new InjectManifest({
         swSrc: './src/sw.js',
         swDest: 'service-worker.js',
