@@ -18,7 +18,15 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        template: "./index.html",
+        title: "Webpack Plugin",
+      }),
+      new WebpackPwaManifest(),
+      new InjectManifest({
+        swSrc: './src/sw.js',
+        swDest: 'service-worker.js',
+      }),
     ],
 
     module: {
@@ -39,7 +47,7 @@ module.exports = () => {
         },
         {
           test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, "css-loader"],
+          use: ['style-loader', "css-loader"],
         },
       ],
     },
